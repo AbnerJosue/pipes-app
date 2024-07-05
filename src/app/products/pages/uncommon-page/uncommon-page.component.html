@@ -5,32 +5,59 @@
 <div class="grid">
     <div class="col-12 md:col-6">
         <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
-            s
+            <p>
+                Saludos {{ name }}, es un placer {{ gender | i18nSelect: invitationMap }} a nuestro evento
+            </p>
+            <p-button 
+                (click)="changeClient()"
+                label="Cambiar Nombre"
+                >
+            </p-button>
         </p-fieldset>
     </div>
       <div class="col-12 md:col-6">
         <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
-            s
+            
+            <p>
+                Actualmente {{ clients.length | i18nPlural:clientsMap }}
+            </p>
+            <p-button
+                (click)="deleteClient()"
+                label="Cliente Atendido"
+            />
         </p-fieldset>
     </div>
     <div class="col-12 md:col-6">
         <p-fieldset legend="Slice Pipe" [toggleable]="true">
-            s
+            <b>Original</b>
+            <pre>{{ clients }}</pre>
+            <b> Slice:0:2</b>
+            <b> {{ clients | slice:0:2 }}</b>
         </p-fieldset>
     </div>
     <div class="col-12 md:col-6">
         <p-fieldset legend="Json Pipe" [toggleable]="true">
-            s
+            {{ person | json }}
         </p-fieldset>
     </div>
     <div class="col-12 md:col-6">
         <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
-            s
+           <ul>
+            <li *ngFor="let item of person | keyvalue"> 
+                <b> {{  item.key | titlecase }}: </b>
+                <b> {{  item.value  }}</b>
+            </li>
+           </ul>
         </p-fieldset>
     </div>
     <div class="col-12 md:col-6">
         <p-fieldset legend="Async Pipe" [toggleable]="true">
-            s
+            <p> Observable </p>
+            <pre *ngIf="!(myObservableTime | async)"> Resolviendo Observable </pre>
+            <pre> {{ myObservableTime | async }}</pre>
+            <p> Promise </p>
+            <pre *ngIf="!(promiseValue | async)"> Resolviendo Observable </pre>
+            <pre> {{ promiseValue | async }}</pre>
         </p-fieldset>
     </div>
 </div>  
